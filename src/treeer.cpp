@@ -22,14 +22,8 @@ bool is_embeddable(const tree_node& smol,const tree_node& big){
 
     auto root = get_valid_starting_point(big, nr_smol_children);
 
-    if (!root) {
-        for (auto const& c : big.children) {
-            if (is_embeddable(smol, *c)) {
-                return true;
-            }
-        }
+    if (!root)
         return false;
-    }
 
     std::vector<std::vector<bool>> embeddable(nr_big_children, std::vector<bool>(nr_smol_children));
 
