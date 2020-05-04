@@ -1,21 +1,6 @@
-#include <iostream>
-#include <fcntl.h>
-#include <unistd.h>
-#include <algorithm>
 #include <numeric>
-#include <memory>
-#include <vector>
-#include <optional>
+#include "treeer.hpp"
 #include "combinatorics.hpp"
-constexpr unsigned int N = 3;
-struct tree_node{
-    unsigned int color;
-    std::vector<std::unique_ptr<tree_node>> children;
-    // std::vector<std::reference_wrapper<std::unique_ptr<tree_node>>> flat;
-};
-
-template <typename T>
-using opt_ref = std::optional<std::reference_wrapper<T>>;
 
 opt_ref<const tree_node> get_valid_starting_point(const tree_node& t, int nr_required_children){
     if (t.children.size() >= nr_required_children)
@@ -68,7 +53,4 @@ bool is_embeddable(const tree_node& smol,const tree_node& big){
     } while(next_k_permutation(&k_permutation[0], nr_big_children, nr_smol_children));
 
     return false;
-}
-int main(){
-
 }
